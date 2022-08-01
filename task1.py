@@ -1,7 +1,7 @@
 # Напишите программу вычисления арифметического выражения заданного строкой.
 # Используйте операции +,-,/,*. приоритет операций стандартный.
 
-input_str = '2+2*2'
+input_str = '2+2*2+(1*1)'
 str = list(input_str)
 def transformation(str):
     new_digit = []
@@ -43,8 +43,28 @@ def diff(new_digit):
     new_digit.pop(i)
     return res
 
-def decision(new_digit):
-    while len(new_digit) > 1:
+def decision(new_digit):    
+    n_ololo =[]
+    ololo = 0
+    for i in range(len(new_digit)):
+        k = new_digit.index('(')+1
+        j = new_digit.index(')')
+    for i in range(k,j):
+        n_ololo.append(new_digit[i])
+    k = k-1
+    for i in range(len(n_ololo)):
+            if '*' in n_ololo:
+                ololo = mult(n_ololo)
+            elif '/' in n_ololo:
+                ololo = div(n_ololo)
+            elif '+' in n_ololo:
+                ololo = sum(n_ololo)
+            elif '-' in n_ololo:
+                ololo = diff(n_ololo)   
+    del new_digit[k:j+1]
+    new_digit.append(ololo)
+
+    while len(new_digit) > 1:                 
         for i in range(len(new_digit)):
             if '*' in new_digit:
                 res = mult(new_digit)
@@ -54,7 +74,7 @@ def decision(new_digit):
                 res = sum(new_digit)
             elif '-' in new_digit:
                 res = diff(new_digit)
-        return res
+    return res
 
 res = decision(new_digit)
 print(res)
