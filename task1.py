@@ -1,7 +1,7 @@
 # Напишите программу вычисления арифметического выражения заданного строкой.
 # Используйте операции +,-,/,*. приоритет операций стандартный.
 
-input_str = '2+2*2+(1*1)'
+input_str = '2+2*2+(1*1)+1'
 str = list(input_str)
 def transformation(str):
     new_digit = []
@@ -62,7 +62,7 @@ def decision(new_digit):
             elif '-' in n_ololo:
                 ololo = diff(n_ololo)   
     del new_digit[k:j+1]
-    new_digit.append(ololo)
+    new_digit.insert(k,ololo)
 
     while len(new_digit) > 1:                 
         for i in range(len(new_digit)):
